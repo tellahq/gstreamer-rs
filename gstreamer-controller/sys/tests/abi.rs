@@ -326,6 +326,7 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
 const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GST_INTERPOLATION_MODE_CUBIC", "2"),
     ("(gint) GST_INTERPOLATION_MODE_CUBIC_MONOTONIC", "3"),
+    ("(gint) GST_INTERPOLATION_MODE_EASE_IN_OUT_EXPO", "4"),
     ("(gint) GST_INTERPOLATION_MODE_LINEAR", "1"),
     ("(gint) GST_INTERPOLATION_MODE_NONE", "0"),
     ("(gint) GST_LFO_WAVEFORM_REVERSE_SAW", "3"),

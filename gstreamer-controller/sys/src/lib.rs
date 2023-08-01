@@ -27,6 +27,7 @@ pub const GST_INTERPOLATION_MODE_NONE: GstInterpolationMode = 0;
 pub const GST_INTERPOLATION_MODE_LINEAR: GstInterpolationMode = 1;
 pub const GST_INTERPOLATION_MODE_CUBIC: GstInterpolationMode = 2;
 pub const GST_INTERPOLATION_MODE_CUBIC_MONOTONIC: GstInterpolationMode = 3;
+pub const GST_INTERPOLATION_MODE_EASE_IN_OUT_EXPO: GstInterpolationMode = 4;
 
 pub type GstLFOWaveform = c_int;
 pub const GST_LFO_WAVEFORM_SINE: GstLFOWaveform = 0;

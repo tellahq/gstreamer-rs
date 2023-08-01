@@ -17,6 +17,8 @@ pub enum InterpolationMode {
     Cubic,
     #[doc(alias = "GST_INTERPOLATION_MODE_CUBIC_MONOTONIC")]
     CubicMonotonic,
+    #[doc(alias = "GST_INTERPOLATION_MODE_EASE_IN_OUT_EXPO")]
+    EaseInOutExpo,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -32,6 +34,7 @@ impl IntoGlib for InterpolationMode {
             Self::Linear => ffi::GST_INTERPOLATION_MODE_LINEAR,
             Self::Cubic => ffi::GST_INTERPOLATION_MODE_CUBIC,
             Self::CubicMonotonic => ffi::GST_INTERPOLATION_MODE_CUBIC_MONOTONIC,
+            Self::EaseInOutExpo => ffi::GST_INTERPOLATION_MODE_EASE_IN_OUT_EXPO,
             Self::__Unknown(value) => value,
         }
     }
@@ -48,6 +51,7 @@ impl FromGlib<ffi::GstInterpolationMode> for InterpolationMode {
             ffi::GST_INTERPOLATION_MODE_LINEAR => Self::Linear,
             ffi::GST_INTERPOLATION_MODE_CUBIC => Self::Cubic,
             ffi::GST_INTERPOLATION_MODE_CUBIC_MONOTONIC => Self::CubicMonotonic,
+            ffi::GST_INTERPOLATION_MODE_EASE_IN_OUT_EXPO => Self::EaseInOutExpo,
             value => Self::__Unknown(value),
         }
     }
