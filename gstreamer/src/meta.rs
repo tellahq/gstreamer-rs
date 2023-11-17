@@ -17,14 +17,6 @@ pub unsafe trait MetaAPI: Sync + Send + Sized {
 }
 
 pub trait MetaAPIExt: MetaAPI {
-    unsafe fn from_ptr(buffer: &BufferRef, ptr: *const Self::GstType) -> MetaRef<Self>;
-    unsafe fn from_mut_ptr<T>(
-        buffer: &mut BufferRef,
-        ptr: *mut Self::GstType,
-    ) -> MetaRefMut<Self, T>;
-}
-
-impl<A: MetaAPI> MetaAPIExt for A {
     #[inline]
     unsafe fn from_ptr(buffer: &BufferRef, ptr: *const Self::GstType) -> MetaRef<Self> {
         debug_assert!(!ptr.is_null());
@@ -170,21 +162,6 @@ impl<'a, T> MetaRef<'a, T> {
         }
     }
 
-    pub fn has_tag(&self, tag: glib::Quark) -> bool {
-        unsafe {
-            from_glib(ffi::gst_meta_api_type_has_tag(
-                self.api().into_glib(),
-                tag.into_glib(),
-            ))
-        }
-    }
-
-    pub fn tags(&self) -> &[glib::GStringPtr] {
-        unsafe {
-            glib::StrV::from_glib_borrow(ffi::gst_meta_api_type_get_tags(self.api().into_glib()))
-        }
-    }
-
     #[inline]
     pub fn flags(&self) -> crate::MetaFlags {
         unsafe {
@@ -320,21 +297,6 @@ impl<'a, T, U> MetaRefMut<'a, T, U> {
     #[inline]
     pub fn api(&self) -> glib::Type {
         self.as_meta_ref().api()
-    }
-
-    pub fn has_tag(&self, tag: glib::Quark) -> bool {
-        unsafe {
-            from_glib(ffi::gst_meta_api_type_has_tag(
-                self.api().into_glib(),
-                tag.into_glib(),
-            ))
-        }
-    }
-
-    pub fn tags(&self) -> &[glib::GStringPtr] {
-        unsafe {
-            glib::StrV::from_glib_borrow(ffi::gst_meta_api_type_get_tags(self.api().into_glib()))
-        }
     }
 
     #[inline]
